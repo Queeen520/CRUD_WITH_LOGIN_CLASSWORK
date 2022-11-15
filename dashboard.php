@@ -1,23 +1,19 @@
 <?php
 session_start();
 require_once 'components/db_connect.php';
-// if session is not set this will redirect to login page
+
 if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
     header("Location: index.php");
     exit;
 }
-//if session user exist it shouldn't access dashboard.php
 if (isset($_SESSION["user"])) {
     header("Location: home.php");
     exit;
 }
 
-$id = $_SESSION['adm'];
 $status = 'adm';
 $sql = "SELECT * FROM users WHERE status != '$status'";
 $result = mysqli_query($connect, $sql);
-
-//this variable will hold the body for the table
 $tbody = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -25,8 +21,8 @@ if ($result->num_rows > 0) {
             <td><img class='img-thumbnail rounded-circle' src='pictures/" . $row['picture'] . "' alt=" . $row['first_name'] . "></td>
             <td>" . $row['first_name'] . " " . $row['last_name'] . "</td>
             <td>" . $row['date_of_birth'] . "</td>
-            <td>" . $row['email'] . "</td>
-            <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
+            <td>" . $row['email'] . "</td>y
+            <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primar btn-sm' type='button'>Edit</button></a>
             <a href='delete.php?id=" . $row['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a></td>
          </tr>";
     }
@@ -42,8 +38,9 @@ mysqli_close($connect);
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adm-Dashboard</title>
+    <title>Hi, Administrator</title>
     <?php require_once 'components/boot.php' ?>
     <style type="text/css">
         .img-thumbnail {
@@ -68,17 +65,23 @@ mysqli_close($connect);
 </head>
 
 <body>
-    <div class="container">
+    <div class="container py-5">
         <div class="row">
-            <div class="col-2">
-                <img class="userImage" src="pictures/admavatar.png" alt="Adm avatar">
-                <p class="">Administrator</p>
-                <a href="logout.php?logout">Sign Out</a>
+            <div class="col-lg-3 my-4">
+                <div class="card-body text-center">
+                    <img src="pictures/admavatar.png" alt=" avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                    <h5 class="my-4">Administrator</h5>
+                    <div class="d-flex justify-content-center mb-2">
+                        <a class="btn btn-outline-primary ms-1" href="logout.php?logout">Log Out</a>
+                        <a class="btn btn-success ms-1" href="products/index.php">Products</a>
+
+                    </div>
+                </div>
             </div>
-            <div class="col-8 mt-2">
+            <div class="col-lg-8 mt-2">
                 <p class='h2'>Users</p>
-                <table class='table table-striped'>
-                    <thead class='table-success'>
+                <table class='table align-middle mb-0 bg-white'>
+                    <thead class='table-light'>
                         <tr>
                             <th>Picture</th>
                             <th>Name</th>
@@ -95,4 +98,5 @@ mysqli_close($connect);
         </div>
     </div>
 </body>
+
 </html>
