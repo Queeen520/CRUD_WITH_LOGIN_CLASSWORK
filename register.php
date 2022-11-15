@@ -15,26 +15,26 @@ require_once 'components/file_upload.php';
 
 $error = false;
 
-$fname = $lname = $date_of_birth = $email = $pass = $picture = "";
-$fnameError = $lnameError = $dateError = $emailError = $passError = $picError = "";
+$firstname = $lastname = $email = $phone = $pass = $picture = "";
+$fnameError = $lnameError = $phoneError = $emailError = $passError = $picError = "";
 
 
 if (isset($_POST['btn-signup'])) {
-    $fname = trim($_POST['fname']);
-    $fname = strip_tags($fname);
-    $fname = htmlspecialchars($fname);
+    $firstname = trim($_POST['firstname']);
+    $firstname = strip_tags($firstname);
+    $firstname = htmlspecialchars($firstname);
 
-    $lname = trim($_POST['lname']);
-    $lname = strip_tags($lname);
-    $lname = htmlspecialchars($lname);
+    $lastname = trim($_POST['lastname']);
+    $lastname = strip_tags($lastname);
+    $lastname = htmlspecialchars($lastname);
 
     $email = trim($_POST['email']);
     $email = strip_tags($email);
     $email = htmlspecialchars($email);
 
-    $date_of_birth = trim($_POST['date_of_birth']);
-    $date_of_birth = strip_tags($date_of_birth);
-    $date_of_birth = htmlspecialchars($date_of_birth);
+    $phone = trim($_POST['phone']);
+    $phone = strip_tags($phone);
+    $phone = htmlspecialchars($phone);
 
     $pass = trim($_POST['pass']);
     $pass = strip_tags($pass);
@@ -44,20 +44,23 @@ if (isset($_POST['btn-signup'])) {
     $picture = file_upload($_FILES['picture']);
 
 
-    if (empty($fname) || empty($lname)) {
+    if (empty($firstname) || empty($lastname)) {
         $error = true;
         $fnameError = "Please enter your name and surname";
-    } elseif (strlen($fname) < 3 || strlen($lname) < 3) {
+    } elseif (strlen($firstname) < 3 || strlen($lastname) < 3) {
         $error = true;
         $fnameError = "Name and surname must have at least 3 characters";
-    } elseif (!preg_match("/^[a-zA-z]+$/", $fname) || !preg_match("/^[a-zA-z]+$/", $lname)) {
+    } elseif (!preg_match("/^[a-zA-z]+$/", $firstname) || !preg_match("/^[a-zA-z]+$/", $lastname)) {
         $error = true;
         $fname = "Name and surname must contain only letters and no spaces";
     }
 
-    if (empty($date_of_birth)) {
+    if (empty($phone)) {
         $error = true;
-        $dateError = "Please enter your date of birth";
+        $phoneError = "Please enter your phone number";
+    } elseif (strlen($phone) < 6) {
+        $error = true;
+        $phoneError = "Please enter a valid phone number";
     }
 
     if (empty($email)) {
@@ -87,8 +90,8 @@ if (isset($_POST['btn-signup'])) {
     $password = hash('sha256', $pass);
 
     if (!$error) {
-        $query = "INSERT INTO users(first_name, last_name, password, date_of_birth,email, picture) 
-        VALUES ('$fname', '$lname','$password','$date_of_birth', '$email', '$picture->fileName')";
+        $query = "INSERT INTO users(firstname, lastname, password, email, phone, picture) 
+        VALUES ('$firstname', '$lastname','$password','$email', '$phone', '$picture->fileName')";
 
         $res = mysqli_query($connect, $query);
 
@@ -138,13 +141,13 @@ mysqli_close($connect);
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <input type="text" name="fname" class="form-control" placeholder="First name" maxlength="50" value="<?php echo $fname ?>" />
+                                        <input type="text" name="firstname" class="form-control" placeholder="First name" maxlength="50" value="<?php echo $firstname ?>" />
                                         <span class="text-danger"> <?php echo $fnameError; ?> </span>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <input type="text" name="lname" class="form-control" placeholder="Surname" maxlength="50" value="<?php echo $lname ?>" />
+                                        <input type="text" name="lastname" class="form-control" placeholder="Surname" maxlength="50" value="<?php echo $lastname ?>" />
                                         <span class="text-danger"> <?php echo $fnameError; ?> </span>
                                     </div>
                                 </div>
@@ -153,8 +156,8 @@ mysqli_close($connect);
                             <div class="row">
                                 <div class="col-md-6 mb-4 d-flex align-items-center">
                                     <div class="form-outline datepicker w-100">
-                                        <input class='form-control' type="date" name="date_of_birth" value="<?php echo $date_of_birth ?>" />
-                                        <span class="text-danger"> <?php echo $dateError; ?> </span>
+                                        <input class='form-control' type="number" name="phone" placeholder="Phone Number" value="<?php echo $phone ?>" />
+                                        <span class="text-danger"> <?php echo $phoneError; ?> </span>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">

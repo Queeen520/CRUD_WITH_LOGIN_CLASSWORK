@@ -18,9 +18,9 @@ $tbody = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
         $tbody .= "<tr>
-            <td><img class='img-thumbnail rounded-circle' src='pictures/" . $row['picture'] . "' alt=" . $row['first_name'] . "></td>
-            <td>" . $row['first_name'] . " " . $row['last_name'] . "</td>
-            <td>" . $row['date_of_birth'] . "</td>
+            <td><img class='img-thumbnail rounded-circle' src='pictures/" . $row['picture'] . "' alt=" . $row['firstname'] . "></td>
+            <td>" . $row['firstname'] . " " . $row['lastname'] . "</td>
+            <td>" . $row['phone'] . "</td>
             <td>" . $row['email'] . "</td>y
             <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primar btn-sm' type='button'>Edit</button></a>
             <a href='delete.php?id=" . $row['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a></td>
@@ -85,7 +85,7 @@ mysqli_close($connect);
                         <tr>
                             <th>Picture</th>
                             <th>Name</th>
-                            <th>Date of birth</th>
+                            <th>Phone Number</th>
                             <th>Email</th>
                             <th>Action</th>
                         </tr>

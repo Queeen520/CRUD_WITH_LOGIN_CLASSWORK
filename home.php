@@ -15,9 +15,9 @@ $query = "SELECT * FROM users WHERE id={$_SESSION['user']}";
 $result = mysqli_query($connect, $query);
 $row = mysqli_fetch_assoc($result);
 
-$fname = $row['first_name'];
-$lname = $row['last_name'];
-$dateOfBirth = $row['date_of_birth'];
+$firstname = $row['firstname'];
+$lastname = $row['lastname'];
+$phone = $row['phone'];
 $email = $row['email'];
 $pic = $row['picture'];
 $status = $row['status'];
@@ -30,7 +30,7 @@ mysqli_close($connect);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome <?= $fname ?></title>
+    <title>Welcome <?= $firstname ?></title>
     <?php require_once 'components/boot.php' ?>
 </head>
 
@@ -41,7 +41,7 @@ mysqli_close($connect);
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <img src="pictures/<?= $pic ?>" alt=" avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-4">Hi, <?= $fname ?></h5>
+                        <h5 class="my-4">Hi, <?= $firstname ?></h5>
                         <div class="d-flex justify-content-center mb-2">
                             <a class=" btn btn-primary ms-1" href="update.php?id=<?= $_SESSION['user'] ?>">Update your profile</a>
                             <a class="btn btn-outline-primary ms-1" href="logout.php?logout">Log Out</a>
@@ -56,7 +56,7 @@ mysqli_close($connect);
                             <p class="mb-0">Name</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0"><?= $fname ?></p>
+                            <p class="text-muted mb-0"><?= $firstname ?></p>
                         </div>
                     </div>
                     <hr>
@@ -65,16 +65,16 @@ mysqli_close($connect);
                             <p class="mb-0">Lastname</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0"><?= $lname ?></p>
+                            <p class="text-muted mb-0"><?= $lastname ?></p>
                         </div>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-sm-3">
-                            <p class="mb-0">Birthday</p>
+                            <p class="mb-0">Phone Number</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0"><?= $dateOfBirth ?></p>
+                            <p class="text-muted mb-0"><?= $phone ?></p>
                         </div>
                     </div>
                     <hr>

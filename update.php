@@ -25,10 +25,10 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($connect, $sql);
     if (mysqli_num_rows($result) == 1) {
         $data = mysqli_fetch_assoc($result);
-        $f_name = $data['first_name'];
-        $l_name = $data['last_name'];
+        $firstname = $data['firstname'];
+        $lastname = $data['lastname'];
         $email = $data['email'];
-        $date_birth = $data['date_of_birth'];
+        $phone = $data['phone'];
         $picture = $data['picture'];
     }
 }
@@ -36,10 +36,10 @@ if (isset($_GET['id'])) {
 //update
 $class = 'd-none';
 if (isset($_POST["submit"])) {
-    $f_name = $_POST['first_name'];
-    $l_name = $_POST['last_name'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
     $email = $_POST['email'];
-    $date_of_birth = $_POST['date_of_birth'];
+    $phone = $_POST['phone'];
     $id = $_POST['id'];
     //variable for upload pictures errors is initialized
     $uploadError = '';
@@ -47,9 +47,9 @@ if (isset($_POST["submit"])) {
     $picture = $pictureArray->fileName;
     if ($pictureArray->error === 0) {
         ($_POST["picture"] == "avatar.png") ?: unlink("pictures/{$_POST["picture"]}");
-        $sql = "UPDATE users SET first_name = '$f_name', last_name = '$l_name', email = '$email', date_of_birth = '$date_of_birth', picture = '$pictureArray->fileName' WHERE id = {$id}";
+        $sql = "UPDATE users SET firstname = '$firstname', lastname = '$lastname', email = '$email', phone = '$phone', picture = '$pictureArray->fileName' WHERE id = {$id}";
     } else {
-        $sql = "UPDATE users SET first_name = '$f_name', last_name = '$l_name', email = '$email', date_of_birth = '$date_of_birth' WHERE id = {$id}";
+        $sql = "UPDATE users SET firstname = '$firstname', lastname = '$lastname', email = '$email', phone = '$phone' WHERE id = {$id}";
     }
     if (mysqli_query($connect, $sql) === true) {
         $class = "alert alert-success";
@@ -97,24 +97,24 @@ mysqli_close($connect);
         </div>
 
         <h2>Update</h2>
-        <img class='img-thumbnail rounded-circle' src='pictures/<?php echo $data['picture'] ?>' alt="<?php echo $f_name ?>">
+        <img class='img-thumbnail rounded-circle' src='pictures/<?php echo $data['picture'] ?>' alt="<?php echo $firstname ?>">
         <form method="post" enctype="multipart/form-data">
             <table class="table">
                 <tr>
                     <th>First Name</th>
-                    <td><input class="form-control" type="text" name="first_name" placeholder="First Name" value="<?php echo $f_name ?>" /></td>
+                    <td><input class="form-control" type="text" name="firstname" placeholder="First Name" value="<?php echo $firstname ?>" /></td>
                 </tr>
                 <tr>
                     <th>Last Name</th>
-                    <td><input class="form-control" type="text" name="last_name" placeholder="Last Name" value="<?php echo $l_name ?>" /></td>
+                    <td><input class="form-control" type="text" name="lastname" placeholder="Last Name" value="<?php echo $lastname ?>" /></td>
                 </tr>
                 <tr>
                     <th>Email</th>
                     <td><input class="form-control" type="email" name="email" placeholder="Email" value="<?php echo $email ?>" /></td>
                 </tr>
                 <tr>
-                    <th>Date of birth</th>
-                    <td><input class="form-control" type="date" name="date_of_birth" placeholder="Date of birth" value="<?php echo $date_birth ?>" /></td>
+                    <th>Phone Number</th>
+                    <td><input class="form-control" type="number" name="phone" placeholder="Phone Number" value="<?php echo $phone ?>" /></td>
                 </tr>
                 <tr>
                     <th>Picture</th>

@@ -19,10 +19,10 @@ if ($_GET['id']) {
     $result = mysqli_query($connect, $sql);
     $data = mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) == 1) {
-        $f_name = $data['first_name'];
-        $l_name = $data['last_name'];
+        $firstname = $data['firstname'];
+        $lastname = $data['lastname'];
         $email = $data['email'];
-        $date_of_birth = $data['date_of_birth'];
+        $phone = $data['phone'];
         $picture = $data['picture'];
     }
 }
@@ -73,13 +73,13 @@ mysqli_close($connect);
         <p><?php echo ($message) ?? ''; ?></p>
     </div>
     <fieldset>
-        <legend class='h2 mb-3'>Delete request <img class='img-thumbnail rounded-circle' src='pictures/<?php echo $picture ?>' alt="<?php echo $f_name ?>"></legend>
+        <legend class='h2 mb-3'>Delete request <img class='img-thumbnail rounded-circle' src='pictures/<?php echo $picture ?>' alt="<?php echo $firstname ?>"></legend>
         <h5>You have selected the data below:</h5>
         <table class="table w-75 mt-3">
             <tr>
-                <td><?php echo "$f_name $l_name" ?></td>
+                <td><?php echo "$firstname $lastname" ?></td>
                 <td><?php echo $email ?></td>
-                <td><?php echo $date_of_birth ?></td>
+                <td><?php echo $phone ?></td>
             </tr>
         </table>
 
