@@ -12,15 +12,16 @@ if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
     exit;
 }
 
-$sql = "SELECT * FROM products";
+$sql = "SELECT * FROM hotels";
 $result = mysqli_query($connect, $sql);
 $tbody = ''; //this variable will hold the body for the table
 if (mysqli_num_rows($result)  > 0) {
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $tbody .= "<tr>
-            <td><img class='img-thumbnail' src='pictures/" . $row['picture'] . "'</td>
+            <td><img class='img-thumbnail' src='../pictures/" . $row['picture'] . "'</td>
             <td>" . $row['name'] . "</td>
-            <td>" . $row['price'] . "</td>
+            <td>" . $row['city'] . "</td>
+            <td>" . $row['stars'] . "</td>
             <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
             <a href='delete.php?id=" . $row['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a></td>
             </tr>";
@@ -56,7 +57,7 @@ mysqli_close($connect);
         }
 
         tr {
-            text-align: center;
+            text-align: left;
         }
     </style>
 </head>
@@ -64,7 +65,7 @@ mysqli_close($connect);
 <body>
     <div class="manageProduct w-75 mt-3">
         <div class='mb-3'>
-            <a href="create.php"><button class='btn btn-primary' type="button">Add product</button></a>
+            <a href="create.php"><button class='btn btn-primary' type="button">Add Hotel</button></a>
             <a href="../dashboard.php"><button class='btn btn-success' type="button">Dashboard</button></a>
         </div>
         <p class='h2'>Products</p>
@@ -73,7 +74,8 @@ mysqli_close($connect);
                 <tr>
                     <th>Picture</th>
                     <th>Name</th>
-                    <th>price</th>
+                    <th>City</th>
+                    <th>Stars</th>
                     <th>Action</th>
                 </tr>
             </thead>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 
 if (isset($_SESSION['user']) != "") {
     header("Location: ../../home.php");
@@ -9,32 +9,33 @@ if (isset($_SESSION['user']) != "") {
 if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
     header("Location: ../../index.php");
     exit;
-}
+}*/
 
 require_once '../../components/db_connect.php';
 require_once '../../components/file_upload.php';
 
 if ($_POST) {
     $name = $_POST['name'];
-    $price = $_POST['price'];
-    $supplier = $_POST['supplier'];
+    $city = $_POST['city'];
+    $stars = $_POST['stars'];
+    //$supplier = $_POST['supplier'];
     $uploadError = '';
     //this function exists in the service file upload.
     $picture = file_upload($_FILES['picture'], 'product');
 
-    if ($supplier == 'none') {
+   /* if ($supplier == 'none') {
         //checks if the supplier is undefined and insert null in the DB
-        $sql = "INSERT INTO products (name, price, picture, fk_supplierId) VALUES ('$name', $price, '$picture->fileName', null)";
-    } else {
-        $sql = "INSERT INTO products (name, price, picture, fk_supplierId) VALUES ('$name', $price, '$picture->fileName', $supplier)";
-    }
+        $sql = "INSERT INTO hotels (name, city, stars, picture) VALUES ('$name', $city, $stars, '$picture->fileName')";
+    } else { */
+        $sql = "INSERT INTO hotels (name, city, stars, picture) VALUES ('$name', $city, $stars, '$picture->fileName')";
+    
 
     if (mysqli_query($connect, $sql) === true) {
         $class = "success";
         $message = "The entry below was successfully created <br>
             <table class='table w-50'><tr>
             <td> $name </td>
-            <td> $price </td>
+            <td> $city </td>
             </tr></table><hr>";
         $uploadError = ($picture->error != 0) ? $picture->ErrorMessage : '';
     } else {
