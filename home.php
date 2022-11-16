@@ -45,6 +45,8 @@ mysqli_close($connect);
                         <div class="d-flex justify-content-center mb-2">
                             <a class=" btn btn-primary ms-1" href="update.php?id=<?= $_SESSION['user'] ?>">Update your profile</a>
                             <a class="btn btn-outline-primary ms-1" href="logout.php?logout">Log Out</a>
+                            <a class="btn btn-outline-danger ms-1" href="hotels/index_user.php">Hotels</a>
+
                         </div>
                     </div>
                 </div>

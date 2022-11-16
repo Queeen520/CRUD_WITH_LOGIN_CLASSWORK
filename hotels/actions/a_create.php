@@ -1,15 +1,15 @@
 <?php
-/*session_start();
+session_start();
 
 if (isset($_SESSION['user']) != "") {
     header("Location: ../../home.php");
     exit;
 }
 
-if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
+if (!isset($_SESSION['adm'])) {
     header("Location: ../../index.php");
     exit;
-}*/
+}
 
 require_once '../../components/db_connect.php';
 require_once '../../components/file_upload.php';
@@ -27,8 +27,7 @@ if ($_POST) {
         //checks if the supplier is undefined and insert null in the DB
         $sql = "INSERT INTO hotels (name, city, stars, picture) VALUES ('$name', $city, $stars, '$picture->fileName')";
     } else { */
-        $sql = "INSERT INTO hotels (name, city, stars, picture) VALUES ('$name', $city, $stars, '$picture->fileName')";
-    
+        $sql = "INSERT INTO hotels (name, city, stars, picture) VALUES ('$name', '$city', $stars, '$picture->fileName')";
 
     if (mysqli_query($connect, $sql) === true) {
         $class = "success";

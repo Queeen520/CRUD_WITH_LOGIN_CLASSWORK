@@ -12,7 +12,7 @@ if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
     exit;
 }*/
 //$suppliers = "";
-$result = mysqli_query($connect, "SELECT * FROM hotels");
+//$result = mysqli_query($connect, "SELECT * FROM hotels");
 
 /*while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
     $hotels .=
