@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
             <td><img class='img-thumbnail rounded-circle' src='pictures/" . $row['picture'] . "' alt=" . $row['firstname'] . "></td>
             <td>" . $row['firstname'] . " " . $row['lastname'] . "</td>
             <td>" . $row['phone'] . "</td>
-            <td>" . $row['email'] . "</td>y
+            <td>" . $row['email'] . "</td>
             <td>
             <a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primar btn-sm' type='button'>Edit</button></a>
             <a href='delete.php?id=" . $row['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a>
