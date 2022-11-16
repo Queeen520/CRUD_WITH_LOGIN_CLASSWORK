@@ -68,7 +68,7 @@ mysqli_close($connect);
     <div class="manageProduct w-75 mt-3">
         <div class='mb-3'>
             <a href="create.php"><button class='btn btn-primary' type="button">Add Hotel</button></a>
-            <a href="../dashboard.php"><button class='btn btn-success' type="button">Dashboard</button></a>
+            <a href="../dashboard.php"><button class='btn btn-success' type="button">User Dashboard</button></a>
         </div>
         <p class='h2'>Hotels</p>
         <table class='table table-striped'>

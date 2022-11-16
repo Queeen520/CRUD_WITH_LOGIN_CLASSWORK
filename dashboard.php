@@ -54,7 +54,7 @@ mysqli_close($connect);
         }
 
         tr {
-            text-align: center;
+            text-align: left;
         }
 
         .userImage {
