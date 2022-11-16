@@ -22,8 +22,10 @@ if ($result->num_rows > 0) {
             <td>" . $row['firstname'] . " " . $row['lastname'] . "</td>
             <td>" . $row['phone'] . "</td>
             <td>" . $row['email'] . "</td>y
-            <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primar btn-sm' type='button'>Edit</button></a>
-            <a href='delete.php?id=" . $row['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a></td>
+            <td>
+            <a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primar btn-sm' type='button'>Edit</button></a>
+            <a href='delete.php?id=" . $row['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a>
+            </td>
          </tr>";
     }
 } else {

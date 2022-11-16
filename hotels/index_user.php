@@ -30,8 +30,6 @@ if (mysqli_num_rows($result)  > 0) {
             <input type='hidden' value='$row[id]' name='hotel_id'>
             <button name='book' class='btn btn-primary btn-sm' type='submit'>Book Room</button>
             </form>
-
-
             </tr>";
     };
 } else {

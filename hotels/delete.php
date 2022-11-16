@@ -15,13 +15,13 @@ require_once '../components/db_connect.php';
 
 if ($_GET['id']) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM products WHERE id = {$id}";
+    $sql = "SELECT * FROM hotels WHERE id = {$id}";
     $result = mysqli_query($connect, $sql);
     $data = mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) == 1) {
         $name = $data['name'];
-        $price = $data['price'];
-        $picture = $data['picture'];
+        $city = $data['city'];
+        $stars = $data['stars'];
     } else {
         header("location: error.php");
     }

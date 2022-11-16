@@ -76,7 +76,7 @@ mysqli_close($connect);
                 <tr>
                     <th>Picture</th>
                     <th>Name</th>
-                    <th>City</th>
+                    <th>Located</th>
                     <th>Stars</th>
                     <th>Action</th>
                 </tr>
